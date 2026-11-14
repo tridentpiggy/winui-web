@@ -1,26 +1,24 @@
-/* Integrated gallery fixes and Fluent control details. */
-/* ComboBox focus: Fluent accent feedback instead of a browser black rectangle. */
-.winui-combo-input:focus,.winui-combo-input:focus-visible { outline:none; border-color:var(--winui-control-stroke-strong); box-shadow:inset 0 -2px var(--winui-accent); }
-.winui-combo .winui-menu-item:focus,.winui-combo .winui-menu-item:focus-visible { outline:none; background:var(--winui-control-hover); box-shadow:inset 3px 0 var(--winui-accent); }
-
-/* Sidebar locator tracks the selected item. */
-.winui-sidebar { position:relative; }
-.winui-sidebar-indicator { position:absolute; z-index:3; left:4px; top:0; width:3px; height:16px; border-radius:2px; background:var(--winui-accent); pointer-events:none; opacity:0; transform:translateY(0); transition:transform 220ms cubic-bezier(.1,.9,.2,1),opacity 120ms ease; }
-.winui-sidebar-indicator[data-visible="true"] { opacity:1; }
-.winui-sidebar[data-collapsed="true"] .winui-sidebar-indicator { left:0; }
-
-/* Fluent slider range. The JS updates --slider-progress while dragging. */
-.winui-slider { display:inline-flex; width:min(280px,100%); min-width:140px; align-items:center; }
-.winui-slider-input { --slider-progress:50%; display:block; width:100%; height:28px; margin:0; padding:0; appearance:none; -webkit-appearance:none; background:transparent; cursor:pointer; }
-.winui-slider-input::-webkit-slider-runnable-track { height:4px; border-radius:2px; background:linear-gradient(to right,var(--winui-accent) 0,var(--winui-accent) var(--slider-progress),var(--winui-control-stroke-strong) var(--slider-progress),var(--winui-control-stroke-strong) 100%); }
-.winui-slider-input::-moz-range-track { height:4px; border-radius:2px; background:var(--winui-control-stroke-strong); }
-.winui-slider-input::-moz-range-progress { height:4px; border-radius:2px; background:var(--winui-accent); }
-.winui-slider-input::-webkit-slider-thumb { width:20px; height:20px; margin-top:-8px; appearance:none; -webkit-appearance:none; border:1px solid rgba(0,0,0,.16); border-radius:50%; background:#fff; box-shadow:0 1px 3px rgba(0,0,0,.2); transition:transform 100ms ease,box-shadow 100ms ease; }
-.winui-slider-input::-moz-range-thumb { width:18px; height:18px; border:1px solid rgba(0,0,0,.16); border-radius:50%; background:#fff; box-shadow:0 1px 3px rgba(0,0,0,.2); transition:transform 100ms ease,box-shadow 100ms ease; }
-.winui-slider-input:hover::-webkit-slider-thumb,.winui-slider-input:active::-webkit-slider-thumb,.winui-slider-input:hover::-moz-range-thumb,.winui-slider-input:active::-moz-range-thumb { transform:scale(1.12); box-shadow:0 2px 6px rgba(0,0,0,.24); }
-.winui-slider-input:focus-visible { outline:2px solid var(--winui-focus); outline-offset:4px; border-radius:10px; }
-.winui-slider-input:disabled { opacity:.45; cursor:default; }
-button.winui-sidebar-toggle { appearance:none; -webkit-appearance:none; border:1px solid transparent; padding:0; box-shadow:none; background:transparent; color:inherit; font:inherit; }
-button.winui-sidebar-toggle:hover { background:var(--winui-control-hover); }
-button.winui-sidebar-toggle:active { background:var(--winui-control-pressed); }
-@media (forced-colors:active) { .winui-combo-input:focus-visible,.winui-combo .winui-menu-item:focus-visible,.winui-slider-input:focus-visible { outline:2px solid Highlight; outline-offset:3px; } .winui-sidebar-indicator { background:Highlight; } }
+/* Integrated styles for WinUI-like controls, gallery fixes, locator and slider. */
+/* ComboBox focus: Fluent accent replaces the browser's harsh black frame. */
+.winui-combo-input:focus,.winui-combo-input:focus-visible{outline:none;border-color:var(--winui-control-stroke-strong,rgba(0,0,0,.16));box-shadow:inset 0 -2px var(--winui-accent,#0067c0)}
+.winui-combo .winui-menu-item:focus,.winui-combo .winui-menu-item:focus-visible{outline:none;background:var(--winui-control-hover,rgba(0,0,0,.04));box-shadow:inset 3px 0 var(--winui-accent,#0067c0)}
+/* Fluent slider with a live accent track and native keyboard semantics. */
+.winui-slider{display:inline-flex;width:min(280px,100%);min-width:140px;align-items:center}
+.winui-slider-input{--slider-progress:50%;display:block;width:100%;height:28px;margin:0;padding:0;appearance:none;-webkit-appearance:none;background:transparent;cursor:pointer}
+.winui-slider-input::-webkit-slider-runnable-track{height:4px;border-radius:2px;background:linear-gradient(to right,var(--winui-accent,#0067c0) 0,var(--winui-accent,#0067c0) var(--slider-progress),var(--winui-control-stroke-strong,rgba(0,0,0,.16)) var(--slider-progress),var(--winui-control-stroke-strong,rgba(0,0,0,.16)) 100%)}
+.winui-slider-input::-moz-range-track{height:4px;border-radius:2px;background:var(--winui-control-stroke-strong,rgba(0,0,0,.16))}
+.winui-slider-input::-moz-range-progress{height:4px;border-radius:2px;background:var(--winui-accent,#0067c0)}
+.winui-slider-input::-webkit-slider-thumb{width:20px;height:20px;margin-top:-8px;appearance:none;-webkit-appearance:none;border:1px solid rgba(0,0,0,.16);border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.2);transition:transform 100ms ease,box-shadow 100ms ease}
+.winui-slider-input::-moz-range-thumb{width:18px;height:18px;border:1px solid rgba(0,0,0,.16);border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.2);transition:transform 100ms ease,box-shadow 100ms ease}
+.winui-slider-input:hover::-webkit-slider-thumb,.winui-slider-input:active::-webkit-slider-thumb,.winui-slider-input:hover::-moz-range-thumb,.winui-slider-input:active::-moz-range-thumb{transform:scale(1.12);box-shadow:0 2px 6px rgba(0,0,0,.24)}
+.winui-slider-input:focus-visible{outline:2px solid var(--winui-focus,#000);outline-offset:4px;border-radius:10px}
+.winui-slider-input:disabled{opacity:.45;cursor:default}
+/* Single moving selection locator for the sidebar. */
+.winui-sidebar{position:relative}
+.winui-sidebar-indicator{position:absolute;z-index:3;left:4px;top:0;width:3px;height:16px;border-radius:2px;background:var(--winui-accent);pointer-events:none;opacity:0;transform:translateY(0);transition:transform 220ms cubic-bezier(.1,.9,.2,1),height 180ms ease,opacity 120ms ease}
+.winui-sidebar-indicator[data-visible="true"]{opacity:1}
+.winui-sidebar[data-collapsed="true"] .winui-sidebar-indicator{left:0}
+button.winui-sidebar-toggle{appearance:none;-webkit-appearance:none;border:1px solid transparent;padding:0;box-shadow:none;background:transparent;color:inherit;font:inherit}
+button.winui-sidebar-toggle:hover{background:var(--winui-control-hover)}
+button.winui-sidebar-toggle:active{background:var(--winui-control-pressed)}
+@media(forced-colors:active){.winui-combo-input:focus-visible,.winui-combo .winui-menu-item:focus-visible,.winui-slider-input:focus-visible{outline:2px solid Highlight;outline-offset:3px}.winui-sidebar-indicator{background:Highlight}}
