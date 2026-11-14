@@ -1,10 +1,14 @@
 # winui-web
 
-A zero-dependency WinUI 3-inspired UI kit built with HTML, CSS, and JavaScript. No XAML, C#, React, Vue, TypeScript, or build step is required. This is a browser simulation, not an official Microsoft implementation; exact pixels vary by browser, OS, fonts, and display scaling.
+A zero-dependency WinUI 3-inspired UI kit built with HTML, CSS, and JavaScript. No XAML, C#, React, Vue, TypeScript, or build step is required. This is a browser simulation, not an official Microsoft implementation; rendering varies by browser, OS, fonts, and display scaling.
+
+## Demo gallery
+
+Open `index.html` or visit the GitHub Pages site. Use the left sidebar to switch between the component pages. Each page contains a live control preview and the corresponding copyable HTML invocation. The current gallery documents all components implemented by this library: buttons, dropdown/selection controls, layout/navigation, and loading/progress.
 
 ## Quick start
 
-Include the CSS and JavaScript, and put `winui-prev` on an ordinary HTML element (`div`, `button`, etc.). No custom `<elements>` tag is required.
+Include the CSS and JavaScript, and put `winui-prev` on an ordinary HTML element (`div`, `button`, etc.):
 
 ```html
 <link rel="stylesheet" href="winui.css">
@@ -13,23 +17,16 @@ Include the CSS and JavaScript, and put `winui-prev` on an ordinary HTML element
 <div winui-prev="Button" winui-content="Button"></div>
 <div winui-prev="AccentButton" winui-content="Accent"></div>
 <div winui-prev="DropDownButton" winui-content="Actions" winui-items='["New","Open","Save"]'></div>
-<div winui-prev="SidebarToggle"></div>
-<div winui-prev="LoadingRing" winui-indeterminate="true"></div>
 ```
 
-## Controls
+## Components
 
-### Buttons and menus
+- Buttons: `Button`, `AccentButton`, `ToggleButton`, `HyperlinkButton`
+- Menus/selection: `DropDownButton`, `SplitButton`, `ComboBox`
+- Layout/navigation: `AppLayout`, `Sidebar`, `SidebarItem`, `SidebarToggle`, `Content`, `StackPanel`, `GridPanel`
+- Loading: `LoadingRing`, `ProgressBar`
 
-`Button`, `AccentButton`, `ToggleButton`, `HyperlinkButton`, `DropDownButton`, `SplitButton`, and `ComboBox`.
-
-- `winui-content`: button text.
-- `winui-items`: JSON array of menu/ComboBox items (or direct child `<option>` labels).
-- `winui-placeholder`: ComboBox placeholder.
-- `winui-disabled="true"`: disable a control.
-- `winui-checked="true"`: initial ToggleButton state.
-
-### Layout
+## Layout example
 
 ```html
 <div winui-prev="AppLayout">
@@ -44,18 +41,4 @@ Include the CSS and JavaScript, and put `winui-prev` on an ordinary HTML element
 </div>
 ```
 
-- `AppLayout`: responsive two-column shell.
-- `Sidebar`: animated navigation pane; `winui-collapsed="true"` starts collapsed.
-- `SidebarToggle`: animated hamburger control, toggles the nearest sidebar or `winui-target="#sidebar-id"`.
-- `SidebarItem`: keyboard-operable navigation item.
-- `Content`: main content area.
-- `StackPanel`: flex layout; `winui-orientation="horizontal"` or `vertical`.
-- `GridPanel`: CSS grid; `winui-columns="1fr 2fr"` sets columns.
-
-### Loading and progress
-
-- `<div winui-prev="LoadingRing" winui-indeterminate="true"></div>`
-- `<div winui-prev="ProgressBar" winui-indeterminate="true"></div>`
-- `<div winui-prev="ProgressBar" winui-value="64"></div>` (0–100)
-
-The library respects `prefers-reduced-motion`, supports light/dark system themes, and initializes controls added later to the DOM. Layout containers preserve their child markup. Controls are visual simulations; no application values or return values are exposed.
+`winui-prev` is the unified component selector. Common optional attributes include `winui-content`, `winui-items` (JSON array), `winui-disabled`, `winui-checked`, `winui-placeholder`, `winui-target`, `winui-collapsed`, `winui-value`, and `winui-indeterminate`. Controls support keyboard navigation where appropriate, light/dark system themes, and reduced-motion preferences. No return values or application data binding are provided.
