@@ -1,66 +1,70 @@
 <!doctype html>
 <html lang="zh-CN">
 <head>
-  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="color-scheme" content="light dark">
-  <title>winui-web · 控件展示</title><link rel="stylesheet" href="winui.css"><script src="winui.js" defer></script>
-  <style>
-    *{box-sizing:border-box} body{margin:0;height:100vh;overflow:hidden;background:var(--winui-page);color:var(--winui-text);font:14px/1.5 var(--winui-font)}
-    .gallery{height:100vh}.gallery-sidebar{gap:3px}.brand{display:flex;align-items:center;gap:10px;padding:8px 12px 16px;font-weight:600;white-space:nowrap}.brand-mark{display:grid;place-items:center;width:28px;height:28px;border-radius:7px;color:#fff;background:var(--winui-accent)}
-    .gallery-sidebar[data-collapsed="true"] .brand{padding-inline:6px}.gallery-sidebar[data-collapsed="true"] .brand-name,.gallery-sidebar[data-collapsed="true"] .nav-label{display:none}.nav-label{padding:18px 12px 6px;color:var(--winui-text-tertiary);font-size:12px;white-space:nowrap}.gallery-nav-item{gap:12px}.gallery-nav-item .nav-glyph{display:inline-grid;place-items:center;width:20px;flex:none;font-size:16px}.gallery-sidebar[data-collapsed="true"] .gallery-nav-item{font-size:0}.gallery-sidebar[data-collapsed="true"] .gallery-nav-item .nav-glyph{font-size:16px}
-    .gallery-main{height:100%;overflow:auto}.topbar{position:sticky;top:0;z-index:2;display:flex;align-items:center;gap:12px;min-height:56px;padding:8px 24px;border-bottom:1px solid var(--winui-control-stroke);background:var(--winui-page)}.topbar-title{font-weight:600}.gallery-body{max-width:1000px;padding:30px clamp(20px,4vw,48px) 60px;margin:auto}.page{animation:page-in 180ms cubic-bezier(0,0,0,1) both}.page[hidden]{display:none}@keyframes page-in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
-    h1{margin:0 0 8px;font-size:28px;font-weight:600}h2{margin:28px 0 12px;font-size:18px;font-weight:600}.lead,.muted{color:var(--winui-text-secondary)}.section{margin-top:22px;padding:18px;border:1px solid var(--winui-control-stroke);border-radius:8px;background:var(--winui-control-fill)}.demo-row{display:flex;flex-wrap:wrap;align-items:center;gap:12px}.demo-layout{height:230px;overflow:hidden;border:1px solid var(--winui-control-stroke);border-radius:8px}.demo-sidebar{background:var(--winui-surface)}.demo-content{padding:20px}.code-title{margin:18px 0 8px;font-weight:600}pre{overflow:auto;margin:0;padding:16px;border:1px solid var(--winui-control-stroke);border-radius:6px;background:var(--winui-surface);color:var(--winui-text);font:13px/1.55 ui-monospace,SFMono-Regular,Consolas,monospace;white-space:pre}.loading-samples{display:flex;align-items:center;gap:28px;flex-wrap:wrap}.loading-samples>div{min-width:180px}
-    @media(max-width:700px){.topbar{padding-inline:12px}.gallery-body{padding-inline:16px}}@media(prefers-reduced-motion:reduce){.page{animation:none}}
-  </style>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="color-scheme" content="light dark">
+<title>winui-web · WinUI 风格控件库</title><link rel="stylesheet" href="winui.css"><script src="winui.js" defer></script>
+<style>
+*{box-sizing:border-box}body{margin:0;height:100vh;overflow:hidden;background:var(--winui-page);color:var(--winui-text);font:14px/1.5 var(--winui-font)}.gallery{display:flex;height:100vh}.gallery-sidebar{display:flex;flex:0 0 220px;flex-direction:column;gap:3px;padding:12px;background:var(--winui-surface);border-right:1px solid var(--winui-control-stroke);transition:flex-basis 200ms var(--winui-out)}.gallery-sidebar[data-collapsed="true"]{flex-basis:56px}.brand{display:flex;align-items:center;gap:10px;padding:8px 10px 16px;font-weight:600}.brand-mark{display:grid;place-items:center;width:28px;height:28px;border-radius:7px;background:var(--winui-accent);color:#fff}.gallery-sidebar[data-collapsed="true"] .brand-name,.gallery-sidebar[data-collapsed="true"] .nav-label,.gallery-sidebar[data-collapsed="true"] .nav-text{display:none}.nav-label{padding:12px 10px 4px;color:var(--winui-text-tertiary);font-size:12px}.nav-item{gap:10px}.nav-icon{width:20px;flex:none;text-align:center}.gallery-main{flex:1;min-width:0;height:100%;overflow:auto}.topbar{position:sticky;top:0;z-index:2;display:flex;align-items:center;gap:12px;min-height:54px;padding:7px 22px;border-bottom:1px solid var(--winui-control-stroke);background:var(--winui-page)}.topbar-title{font-weight:600}.gallery-body{max-width:1000px;margin:auto;padding:28px clamp(16px,4vw,42px) 60px}.page[hidden]{display:none}.page{animation:pageIn 160ms var(--winui-ease)}@keyframes pageIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}h1{margin:0 0 8px;font-size:28px}h2{margin:24px 0 12px;font-size:18px}.lead,.muted{color:var(--winui-text-secondary)}.section{margin-top:20px;padding:18px;border:1px solid var(--winui-control-stroke);border-radius:8px;background:var(--winui-control-fill)}.demo-row{display:flex;flex-wrap:wrap;align-items:center;gap:12px}.code-title{margin:16px 0 8px;font-weight:600}pre{overflow:auto;margin:0;padding:14px;border:1px solid var(--winui-control-stroke);border-radius:6px;background:var(--winui-surface);font:13px/1.55 ui-monospace,Consolas,monospace}.showcase-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px}.showcase-card{padding:14px;border:1px solid var(--winui-control-stroke);border-radius:8px;background:var(--winui-control-fill)}.showcase-card h3{margin:0 0 12px;font-size:14px}.loading-examples{display:grid;gap:18px;max-width:440px}.sample-sidebar{height:180px}.sample-sidebar .winui-sidebar-item{padding-inline:10px}.inline-row{display:flex;flex-wrap:wrap;align-items:center;gap:12px}.demo-info{margin-top:10px}.expander-demo{margin-top:14px}.gallery-sidebar-toggle{margin-bottom:4px}
+@media(max-width:680px){.gallery-sidebar{flex-basis:180px;padding:8px}.gallery-sidebar[data-collapsed="true"]{flex-basis:48px}.topbar{padding-inline:10px}.gallery-body{padding-inline:14px}}
+</style>
 </head>
 <body>
-  <div winui-prev="AppLayout" class="gallery">
-    <aside winui-prev="Sidebar" id="gallery-sidebar" class="gallery-sidebar" winui-label="组件导航">
-      <div class="brand"><span class="brand-mark">W</span><span class="brand-name">winui-web</span></div>
-      <button winui-prev="SidebarToggle" class="gallery-sidebar-toggle" winui-target="#gallery-sidebar" winui-label="折叠或展开导航" winui-content=""></button>
-      <div class="nav-label">控件目录</div>
-      <div winui-prev="SidebarItem" class="gallery-nav-item" data-page-link="buttons" aria-current="page"><span class="nav-glyph">▣</span>按钮</div>
-      <div winui-prev="SidebarItem" class="gallery-nav-item" data-page-link="dropdowns"><span class="nav-glyph">⌄</span>下拉与选择</div>
-      <div winui-prev="SidebarItem" class="gallery-nav-item" data-page-link="layout"><span class="nav-glyph">☷</span>布局与导航</div>
-      <div winui-prev="SidebarItem" class="gallery-nav-item" data-page-link="loading"><span class="nav-glyph">◌</span>加载与进度</div>
-      <div winui-prev="SidebarItem" class="gallery-nav-item" data-page-link="usage"><span class="nav-glyph">⌘</span>调用说明</div>
-    </aside>
-    <main winui-prev="Content" class="gallery-main">
-      <header class="topbar"><button winui-prev="SidebarToggle" winui-target="#gallery-sidebar" winui-label="切换导航" winui-content=""></button><span class="topbar-title" id="current-title">按钮</span><span class="muted">纯 HTML · CSS · JavaScript</span></header>
-      <div class="gallery-body">
-        <section class="page" data-page="buttons"><h1>按钮</h1><p class="lead">按钮家族示例。每页展示组件预览及 HTML 调用代码。</p><div class="section"><h2>普通、强调、切换与超链接</h2><div class="demo-row"><div winui-prev="Button" winui-content="标准按钮"></div><div winui-prev="AccentButton" winui-content="强调按钮"></div><button winui-prev="ToggleButton" winui-content="切换按钮"></button><div winui-prev="ToggleButton" winui-content="默认选中" winui-checked="true"></div><div winui-prev="HyperlinkButton" winui-content="超链接按钮"></div><div winui-prev="Button" winui-content="禁用按钮" winui-disabled="true"></div></div><div class="code-title">HTML 调用</div><pre><code>&lt;div winui-prev="Button" winui-content="标准按钮"&gt;&lt;/div&gt;
+<div winui-prev="AppLayout" class="gallery">
+<aside winui-prev="Sidebar" id="gallery-sidebar" class="gallery-sidebar" winui-label="组件导航">
+<div class="brand"><span class="brand-mark">W</span><span class="brand-name">winui-web</span></div>
+<button winui-prev="SidebarToggle" class="gallery-sidebar-toggle" winui-target="#gallery-sidebar" winui-label="折叠或展开导航"></button>
+<div class="nav-label">组件目录</div>
+<div winui-prev="SidebarItem" class="nav-item" data-page-link="buttons" aria-current="page"><span class="nav-icon">▣</span><span class="nav-text">按钮与菜单</span></div>
+<div winui-prev="SidebarItem" class="nav-item" data-page-link="inputs"><span class="nav-icon">▤</span><span class="nav-text">输入与选择</span></div>
+<div winui-prev="SidebarItem" class="nav-item" data-page-link="range"><span class="nav-icon">◉</span><span class="nav-text">滑块与进度</span></div>
+<div winui-prev="SidebarItem" class="nav-item" data-page-link="views"><span class="nav-icon">▦</span><span class="nav-text">列表与标签</span></div>
+<div winui-prev="SidebarItem" class="nav-item" data-page-link="layout"><span class="nav-icon">☷</span><span class="nav-text">布局与容器</span></div>
+<div winui-prev="SidebarItem" class="nav-item" data-page-link="feedback"><span class="nav-icon">ⓘ</span><span class="nav-text">信息与对话框</span></div>
+<div winui-prev="SidebarItem" class="nav-item" data-page-link="usage"><span class="nav-icon">⌘</span><span class="nav-text">使用说明</span></div>
+</aside>
+<main winui-prev="Content" class="gallery-main">
+<header class="topbar"><button winui-prev="SidebarToggle" winui-target="#gallery-sidebar" winui-label="切换导航"></button><span class="topbar-title" id="current-title">按钮与菜单</span><span class="muted">纯 HTML · CSS · JavaScript</span></header>
+<div class="gallery-body">
+<section class="page" data-page="buttons"><h1>按钮与菜单</h1><p class="lead">按钮家族、下拉、分裂按钮、ComboBox 和 MenuFlyout。</p>
+<div class="section"><h2>按钮</h2><div class="demo-row"><div winui-prev="Button" winui-content="标准按钮"></div><div winui-prev="AccentButton" winui-content="强调按钮"></div><button winui-prev="ToggleButton" winui-content="切换按钮"></button><div winui-prev="ToggleButton" winui-content="选中状态" winui-checked="true"></div><div winui-prev="HyperlinkButton" winui-content="超链接"></div><div winui-prev="Button" winui-content="禁用" winui-disabled="true"></div></div><div class="code-title">HTML</div><pre><code>&lt;div winui-prev="Button" winui-content="标准按钮"&gt;&lt;/div&gt;
 &lt;div winui-prev="AccentButton" winui-content="强调按钮"&gt;&lt;/div&gt;
-&lt;button winui-prev="ToggleButton" winui-content="切换按钮"&gt;&lt;/button&gt;
-&lt;div winui-prev="HyperlinkButton" winui-content="超链接按钮"&gt;&lt;/div&gt;</code></pre></div></section>
-        <section class="page" data-page="dropdowns" hidden><h1>下拉与选择</h1><p class="lead">下拉菜单、分裂按钮和可编辑 ComboBox，支持点击、键盘导航和弹出动画。</p><div class="section"><h2>预览</h2><div class="demo-row"><div winui-prev="DropDownButton" winui-content="文件操作" winui-items='["新建","打开","保存","另存为"]'></div><div winui-prev="SplitButton" winui-content="运行" winui-items='["运行","以管理员身份运行","调试"]'></div><div winui-prev="ComboBox" winui-placeholder="选择水果" winui-items='["苹果","杏子","香蕉","蓝莓","橙子","梨"]'></div></div><div class="code-title">HTML 调用</div><pre><code>&lt;div winui-prev="DropDownButton" winui-content="文件操作" winui-items='["新建","打开","保存"]'&gt;&lt;/div&gt;
-&lt;div winui-prev="SplitButton" winui-content="运行" winui-items='["运行","调试"]'&gt;&lt;/div&gt;
-&lt;div winui-prev="ComboBox" winui-placeholder="选择水果" winui-items='["苹果","香蕉","梨"]'&gt;&lt;/div&gt;</code></pre></div></section>
-        <section class="page" data-page="layout" hidden><h1>布局与导航</h1><p class="lead">可折叠的 Sidebar 和带动画的切换按钮。</p><div class="section"><h2>预览</h2><div winui-prev="AppLayout" class="demo-layout"><div winui-prev="Sidebar" id="sample-sidebar" class="demo-sidebar" winui-label="示例导航"><div winui-prev="SidebarItem" aria-current="page">主页</div><div winui-prev="SidebarItem">收藏</div><div winui-prev="SidebarItem">设置</div></div><div winui-prev="Content" class="demo-content"><button winui-prev="SidebarToggle" winui-target="#sample-sidebar" winui-content="导航"></button><h2>内容区域</h2><p>按下导航按钮试试展开和收起动画。</p></div></div><div class="code-title">HTML 调用</div><pre><code>&lt;div winui-prev="AppLayout"&gt;
-  &lt;div winui-prev="Sidebar" id="nav"&gt;
-    &lt;div winui-prev="SidebarItem"&gt;主页&lt;/div&gt;
-  &lt;/div&gt;
-  &lt;div winui-prev="Content"&gt;
-    &lt;button winui-prev="SidebarToggle" winui-target="#nav"&gt;&lt;/button&gt;
-  &lt;/div&gt;
-&lt;/div&gt;</code></pre></div></section>
-        <section class="page" data-page="loading" hidden><h1>加载与进度</h1><p class="lead">不确定进度的圆环/条形加载动画，以及确定值的进度条。</p><div class="section"><h2>预览</h2><div class="loading-samples"><div><div class="muted">加载圆环</div><div winui-prev="LoadingRing" winui-indeterminate="true" winui-label="正在加载"></div></div><div><div class="muted">循环进度条</div><div winui-prev="ProgressBar" winui-indeterminate="true" winui-label="正在加载"></div></div><div><div class="muted">确定进度：64%</div><div winui-prev="ProgressBar" winui-value="64"></div></div></div><div class="code-title">HTML 调用</div><pre><code>&lt;div winui-prev="LoadingRing" winui-indeterminate="true"&gt;&lt;/div&gt;
+&lt;button winui-prev="ToggleButton" winui-content="切换按钮"&gt;&lt;/button&gt;</code></pre></div>
+<div class="section"><h2>下拉与选择</h2><div class="demo-row"><div winui-prev="DropDownButton" winui-content="操作" winui-items='["新建","打开","保存"]'></div><div winui-prev="SplitButton" winui-content="运行" winui-items='["运行","调试"]'></div><div winui-prev="ComboBox" winui-placeholder="选择水果" winui-items='["苹果","香蕉","橙子"]'></div><div winui-prev="MenuFlyout" winui-content="更多菜单" winui-items='["复制","粘贴","删除"]'></div></div><div class="code-title">HTML</div><pre><code>&lt;div winui-prev="DropDownButton" winui-content="操作" winui-items='["新建","打开"]'&gt;&lt;/div&gt;
+&lt;div winui-prev="ComboBox" winui-placeholder="选择水果" winui-items='["苹果","香蕉"]'&gt;&lt;/div&gt;</code></pre></div></section>
+<section class="page" data-page="inputs" hidden><h1>输入与选择</h1><p class="lead">文本、密码、数字、日期、时间、颜色及 CheckBox、RadioButton、ToggleSwitch。</p>
+<div class="section"><div class="showcase-grid">
+<div class="showcase-card"><h3>TextBox / PasswordBox</h3><div class="inline-row"><div winui-prev="TextBox" winui-placeholder="输入名称"></div><div winui-prev="PasswordBox" winui-placeholder="输入密码"></div></div></div>
+<div class="showcase-card"><h3>NumberBox / SearchBox</h3><div class="inline-row"><div winui-prev="NumberBox" winui-label="数量" winui-value="12" winui-min="0" winui-max="100"></div><div winui-prev="SearchBox" winui-placeholder="搜索"></div></div></div>
+<div class="showcase-card"><h3>DatePicker / TimePicker / ColorPicker</h3><div class="inline-row"><div winui-prev="DatePicker" winui-label="日期"></div><div winui-prev="TimePicker" winui-label="时间"></div><div winui-prev="ColorPicker" winui-label="颜色"></div></div></div>
+<div class="showcase-card"><h3>CheckBox / RadioButton</h3><div class="inline-row"><label winui-prev="CheckBox" winui-content="启用功能" winui-checked="true"></label><label winui-prev="RadioButton" winui-content="选项 A" winui-group="sample"></label><label winui-prev="RadioButton" winui-content="选项 B" winui-group="sample" winui-checked="true"></label></div></div>
+<div class="showcase-card"><h3>ToggleSwitch</h3><div winui-prev="ToggleSwitch" winui-content="Wi-Fi" winui-checked="true"></div></div>
+</div><div class="code-title">HTML 调用</div><pre><code>&lt;div winui-prev="TextBox" winui-placeholder="输入名称"&gt;&lt;/div&gt;
+&lt;div winui-prev="PasswordBox" winui-placeholder="输入密码"&gt;&lt;/div&gt;
+&lt;div winui-prev="NumberBox" winui-value="12" winui-min="0" winui-max="100"&gt;&lt;/div&gt;
+&lt;label winui-prev="CheckBox" winui-content="启用功能" winui-checked="true"&gt;&lt;/label&gt;
+&lt;label winui-prev="RadioButton" winui-content="选项 A" winui-group="options"&gt;&lt;/label&gt;
+&lt;div winui-prev="ToggleSwitch" winui-content="Wi-Fi" winui-checked="true"&gt;&lt;/div&gt;</code></pre></div></section>
+<section class="page" data-page="range" hidden><h1>滑块与进度</h1><div class="section"><h2>Slider</h2><div class="inline-row"><div winui-prev="Slider" winui-min="0" winui-max="100" winui-value="45"></div><div winui-prev="Slider" winui-min="0" winui-max="10" winui-value="7" winui-disabled="true"></div></div><div class="code-title">HTML</div><pre><code>&lt;div winui-prev="Slider" winui-min="0" winui-max="100" winui-value="45"&gt;&lt;/div&gt;</code></pre></div><div class="section"><h2>ProgressBar / ProgressRing</h2><div class="loading-examples"><div winui-prev="ProgressBar" winui-value="64"></div><div winui-prev="ProgressBar" winui-indeterminate="true"></div><div class="inline-row"><div winui-prev="LoadingRing" winui-indeterminate="true"></div><div winui-prev="ProgressRing" winui-indeterminate="true"></div></div></div><div class="code-title">HTML</div><pre><code>&lt;div winui-prev="ProgressBar" winui-value="64"&gt;&lt;/div&gt;
 &lt;div winui-prev="ProgressBar" winui-indeterminate="true"&gt;&lt;/div&gt;
-&lt;div winui-prev="ProgressBar" winui-value="64"&gt;&lt;/div&gt;</code></pre></div></section>
-        <section class="page" data-page="usage" hidden><h1>调用说明</h1><p class="lead">引入 CSS 和 JS，把组件类型写入普通元素的 winui-prev 属性即可。</p><div class="section"><h2>快速开始</h2><pre><code>&lt;link rel="stylesheet" href="winui.css"&gt;
+&lt;div winui-prev="ProgressRing" winui-indeterminate="true"&gt;&lt;/div&gt;</code></pre></div></section>
+<section class="page" data-page="views" hidden><h1>列表与标签</h1><div class="section"><h2>TabView</h2><div winui-prev="TabView" winui-items='["主页","文档","设置"]'></div><div class="code-title">HTML</div><pre><code>&lt;div winui-prev="TabView" winui-items='["主页","文档","设置"]'&gt;&lt;/div&gt;</code></pre></div><div class="section"><h2>ListView / TreeView</h2><div class="showcase-grid"><div winui-prev="ListView" winui-items='["第一项","第二项","第三项"]'></div><div winui-prev="TreeView" winui-items='["文档","图片","下载"]'></div></div><div class="code-title">HTML</div><pre><code>&lt;div winui-prev="ListView" winui-items='["第一项","第二项"]'&gt;&lt;/div&gt;
+&lt;div winui-prev="TreeView" winui-items='["文档","图片"]'&gt;&lt;/div&gt;</code></pre></div></section>
+<section class="page" data-page="layout" hidden><h1>布局与容器</h1><div class="section"><h2>StackPanel / GridPanel</h2><div winui-prev="StackPanel" winui-orientation="horizontal" class="inline-row"><div winui-prev="Card">卡片 A</div><div winui-prev="Card">卡片 B</div></div><div class="code-title">HTML</div><pre><code>&lt;div winui-prev="StackPanel" winui-orientation="horizontal"&gt;...&lt;/div&gt;
+&lt;div winui-prev="GridPanel" winui-columns="1fr 2fr"&gt;...&lt;/div&gt;</code></pre></div><div class="section"><h2>Expander</h2><div winui-prev="Expander" winui-header="更多详情" winui-expanded="true">这里是可折叠的内容。</div><div class="code-title">HTML</div><pre><code>&lt;div winui-prev="Expander" winui-header="更多详情"&gt;折叠内容&lt;/div&gt;</code></pre></div></section>
+<section class="page" data-page="feedback" hidden><h1>信息与对话框</h1><div class="section"><h2>InfoBar / InfoBadge / Separator / Card</h2><div winui-prev="InfoBar" winui-severity="success">操作成功，内容已保存。</div><p>未读消息 <span winui-prev="InfoBadge" winui-content="3"></span></p><div winui-prev="Separator"></div><div winui-prev="Card">这是卡片内容。</div></div><div class="section"><h2>MessageDialog</h2><div winui-prev="MessageDialog" winui-content="打开对话框" winui-title="示例对话框" winui-message="这是一个 WinUI 风格的模态对话框。"></div><div class="code-title">HTML</div><pre><code>&lt;div winui-prev="MessageDialog" winui-content="打开对话框" winui-title="提示" winui-message="消息内容"&gt;&lt;/div&gt;</code></pre></div></section>
+<section class="page" data-page="usage" hidden><h1>使用说明</h1><div class="section"><h2>引入</h2><pre><code>&lt;link rel="stylesheet" href="winui.css"&gt;
 &lt;script src="winui.js" defer&gt;&lt;/script&gt;
-&lt;div winui-prev="Button" winui-content="Hello WinUI"&gt;&lt;/div&gt;</code></pre><h2>公共属性</h2><pre><code>winui-prev          组件类型（所有组件统一入口）
-winui-content       显示文本
-winui-items         下拉项 JSON 数组
-winui-disabled      true 时禁用
-winui-checked       ToggleButton 初始选中
-winui-target        SidebarToggle 目标侧边栏选择器
-winui-collapsed     Sidebar 初始折叠
-winui-value         ProgressBar 数值 0–100
-winui-indeterminate="true"  不确定进度动画</code></pre></div></section>
-      </div>
-    </main>
-  </div>
-  <script>
-    document.addEventListener('DOMContentLoaded',()=>{const links=[...document.querySelectorAll('[data-page-link]')],pages=[...document.querySelectorAll('[data-page]')],title=document.getElementById('current-title'),names={buttons:'按钮',dropdowns:'下拉与选择',layout:'布局与导航',loading:'加载与进度',usage:'调用说明'};function showPage(id,hash=true){if(!names[id])id='buttons';pages.forEach(p=>p.hidden=p.dataset.page!==id);links.forEach(a=>a.dataset.pageLink===id?a.setAttribute('aria-current','page'):a.removeAttribute('aria-current'));title.textContent=names[id];if(hash)history.replaceState(null,'',`#${id}`);document.querySelector('.gallery-main').scrollTo({top:0,behavior:'smooth'});}links.forEach(a=>a.addEventListener('click',()=>showPage(a.dataset.pageLink)));window.addEventListener('hashchange',()=>showPage(location.hash.slice(1),false));showPage(location.hash.slice(1)||'buttons',false);});
-  </script>
-</body>
-</html>
+&lt;div winui-prev="TextBox" winui-placeholder="输入内容"&gt;&lt;/div&gt;</code></pre><h2>通用属性</h2><pre><code>winui-prev       组件类型
+winui-content    标题或标签文本
+winui-placeholder 输入提示
+winui-items      下拉/列表 JSON 数组
+winui-value      初始数值或进度
+winui-checked    初始勾选状态
+winui-disabled   true 时禁用
+winui-min/max    范围控件边界
+winui-group      单选按钮组名</code></pre></div></section>
+</div></main></div>
+<script>
+document.addEventListener('DOMContentLoaded',()=>{const links=[...document.querySelectorAll('[data-page-link]')],pages=[...document.querySelectorAll('[data-page]')],title=document.getElementById('current-title'),names={buttons:'按钮与菜单',inputs:'输入与选择',range:'滑块与进度',views:'列表与标签',layout:'布局与容器',feedback:'信息与对话框',usage:'使用说明'};function showPage(id,hash=true){if(!names[id])id='buttons';pages.forEach(p=>p.hidden=p.dataset.page!==id);links.forEach(a=>a.dataset.pageLink===id?a.setAttribute('aria-current','page'):a.removeAttribute('aria-current'));title.textContent=names[id];if(hash)history.replaceState(null,'',`#${id}`);document.querySelector('.gallery-main').scrollTo({top:0,behavior:'smooth'});}links.forEach(a=>a.addEventListener('click',()=>showPage(a.dataset.pageLink)));window.addEventListener('hashchange',()=>showPage(location.hash.slice(1),false));showPage(location.hash.slice(1)||'buttons',false);});
+</script>
+</body></html>
