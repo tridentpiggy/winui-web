@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <title>winui-web · WinUI-inspired controls</title>
+  <link rel="stylesheet" href="winui.css">
+  <script src="winui.js" defer></script>
+  <style>
+    body { margin: 0; min-height: 100vh; background: var(--winui-page); color: var(--winui-text); font: 14px/1.5 "Segoe UI Variable", "Segoe UI", sans-serif; }
+    main { max-width: 860px; margin: auto; padding: 48px 24px 80px; }
+    h1 { font-size: 30px; font-weight: 600; margin: 0 0 8px; }
+    h2 { font-size: 18px; font-weight: 600; margin: 34px 0 16px; }
+    p { color: var(--winui-subtle); }
+    .controls { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 12px; }
+    .note { margin-top: 40px; padding: 16px; border: 1px solid var(--winui-border); border-radius: 8px; }
+    code { font-family: Consolas, monospace; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>winui-web</h1>
+    <p>Pure HTML, CSS, and JavaScript controls inspired by WinUI 3. No framework or build step.</p>
+
+    <h2>Buttons</h2>
+    <div class="controls">
+      <elements winui-prev="Button" winui-content="Standard button"></elements>
+      <elements winui-prev="AccentButton" winui-content="Accent button"></elements>
+      <elements winui-prev="ToggleButton" winui-content="Toggle button"></elements>
+      <elements winui-prev="HyperlinkButton" winui-content="Hyperlink button"></elements>
+      <elements winui-prev="Button" winui-content="Disabled" winui-disabled="true"></elements>
+    </div>
+
+    <h2>Dropdowns</h2>
+    <div class="controls">
+      <elements winui-prev="DropDownButton" winui-content="Actions" winui-items='["New","Open","Save as…"]'></elements>
+      <elements winui-prev="SplitButton" winui-content="Run" winui-items='["Run","Run as administrator","Debug"]'></elements>
+      <elements winui-prev="ComboBox" winui-placeholder="Choose a fruit" winui-items='["Apple","Apricot","Banana","Blueberry","Orange","Pear"]'></elements>
+    </div>
+
+    <div class="note"><strong>Visual simulation:</strong> these controls mimic WinUI 3 interaction and styling in the browser. Exact pixel matching depends on browser, OS, font availability, and display scaling.</div>
+  </main>
+</body>
+</html>
