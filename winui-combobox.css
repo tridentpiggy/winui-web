@@ -1,0 +1,25 @@
+/* ComboBox focus polish: avoid the browser's harsh black focus rectangle while
+   keeping a clear Fluent accent focus indicator for keyboard users. Load this
+   after winui.css if your project uses the ComboBox control. */
+.winui-combo-input:focus,
+.winui-combo-input:focus-visible {
+  outline: none;
+  border-color: var(--winui-control-stroke-strong, rgba(0,0,0,.16));
+  box-shadow: inset 0 -2px var(--winui-accent, #0067c0);
+}
+
+/* A focused suggestion uses a subtle row fill and accent marker, not a black box. */
+.winui-combo .winui-menu-item:focus,
+.winui-combo .winui-menu-item:focus-visible {
+  outline: none;
+  background: var(--winui-control-hover, rgba(0,0,0,.04));
+  box-shadow: inset 3px 0 var(--winui-accent, #0067c0);
+}
+
+@media (forced-colors: active) {
+  .winui-combo-input:focus-visible,
+  .winui-combo .winui-menu-item:focus-visible {
+    outline: 2px solid Highlight;
+    outline-offset: 2px;
+  }
+}
