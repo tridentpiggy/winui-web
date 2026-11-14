@@ -1,6 +1,6 @@
 # winui-web
 
-A zero-dependency WinUI 3-inspired HTML/CSS/JavaScript control library. No XAML, C#, React, Vue, TypeScript, or build step. This is a browser simulation, not an official Microsoft implementation; exact pixels vary by browser, operating system, fonts, and display scaling.
+A zero-dependency WinUI 3-inspired HTML/CSS/JavaScript control library. No XAML, C#, framework, or build step. This is a browser simulation, not an official Microsoft implementation; details vary by browser, operating system, font, and scaling.
 
 ## Quick start
 
@@ -10,17 +10,15 @@ A zero-dependency WinUI 3-inspired HTML/CSS/JavaScript control library. No XAML,
 <div winui-prev="Button" winui-content="Hello WinUI"></div>
 ```
 
-All components use `winui-prev` on ordinary HTML elements (`div`, `button`, `label`, etc.).
+All components use the same `winui-prev` attribute on normal HTML elements (`div`, `button`, `label`, etc.). Open `index.html` for a gallery with working navigation, component previews, and usage snippets.
 
 ## Components
 
 - **Buttons/menus:** `Button`, `AccentButton`, `ToggleButton`, `HyperlinkButton`, `DropDownButton`, `SplitButton`, `MenuFlyout`, `ComboBox`
-- **Text/input:** `TextBlock`, `TextBox`, `PasswordBox`, `NumberBox`, `SearchBox`, `DatePicker`, `TimePicker`, `ColorPicker`
+- **Text/input:** `TextBox`, `PasswordBox`, `NumberBox`, `SearchBox`, `DatePicker`, `TimePicker`, `ColorPicker`
 - **Choice/value:** `CheckBox`, `RadioButton`, `ToggleSwitch`, `Slider`, `ProgressBar`, `LoadingRing`, `ProgressRing`
 - **Views/layout:** `TabView`, `ListView`, `TreeView`, `Expander`, `AppLayout`, `Sidebar`, `SidebarItem`, `SidebarToggle`, `Content`, `StackPanel`, `GridPanel`, `Card`
 - **Feedback:** `InfoBar`, `InfoBadge`, `Separator`, `MessageDialog`
-
-The `index.html` demo includes live component previews and HTML snippets. Sidebar entries navigate between categories.
 
 ## Examples
 
@@ -35,4 +33,4 @@ The `index.html` demo includes live component previews and HTML snippets. Sideba
 <div winui-prev="MessageDialog" winui-content="Show dialog" winui-title="Hello" winui-message="Example dialog"></div>
 ```
 
-Common attributes: `winui-content`, `winui-placeholder`, `winui-items` (JSON array), `winui-value`, `winui-checked`, `winui-disabled="true"`, `winui-min`, `winui-max`, `winui-step`, `winui-group`, and `winui-target`. Controls use native browser primitives where appropriate and respect `prefers-reduced-motion`.
+Supported common attributes: `winui-content`, `winui-placeholder`, `winui-items` (JSON array), `winui-value`, `winui-checked`, `winui-disabled="true"`, `winui-min`, `winui-max`, `winui-step`, and `winui-group`. The library uses native browser controls where practical and respects `prefers-reduced-motion`.
