@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -8,38 +8,60 @@
   <link rel="stylesheet" href="winui.css">
   <script src="winui.js" defer></script>
   <style>
-    body { margin: 0; min-height: 100vh; background: var(--winui-page); color: var(--winui-text); font: 14px/1.5 "Segoe UI Variable", "Segoe UI", sans-serif; }
-    main { max-width: 860px; margin: auto; padding: 48px 24px 80px; }
-    h1 { font-size: 30px; font-weight: 600; margin: 0 0 8px; }
-    h2 { font-size: 18px; font-weight: 600; margin: 34px 0 16px; }
-    p { color: var(--winui-subtle); }
-    .controls { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 12px; }
-    .note { margin-top: 40px; padding: 16px; border: 1px solid var(--winui-border); border-radius: 8px; }
-    code { font-family: Consolas, monospace; }
+    body { margin:0; min-height:100vh; background:var(--winui-page); color:var(--winui-text); font:14px/1.5 var(--winui-font); }
+    main { max-width:1100px; margin:auto; padding:32px 24px 64px; }
+    h1 { font-size:28px; font-weight:600; margin:0 0 8px; }
+    h2 { font-size:18px; font-weight:600; margin:28px 0 12px; }
+    p { color:var(--winui-text-secondary); }
+    .demo-row { display:flex; flex-wrap:wrap; align-items:center; gap:12px; }
+    .demo-card { padding:16px; border:1px solid var(--winui-control-stroke); border-radius:8px; background:var(--winui-control-fill); }
+    .demo-layout { height:290px; overflow:hidden; border:1px solid var(--winui-control-stroke); border-radius:8px; }
+    .demo-sidebar { background:var(--winui-surface); border-right:1px solid var(--winui-control-stroke); }
+    .demo-sidebar [winui-prev="SidebarItem"] { padding:10px 12px; }
+    .demo-sidebar [winui-prev="SidebarItem"]::before { content:""; width:4px; height:18px; flex:none; margin-right:12px; border-radius:3px; background:var(--winui-accent); opacity:0; }
+    .demo-sidebar [winui-prev="SidebarItem"]:hover { background:var(--winui-control-hover); }
+    .demo-sidebar [winui-prev="SidebarItem"][aria-current="page"]::before { opacity:1; }
+    .demo-content { padding:24px; }
+    .loading-row { display:flex; align-items:center; gap:24px; }
   </style>
 </head>
 <body>
   <main>
     <h1>winui-web</h1>
-    <p>Pure HTML, CSS, and JavaScript controls inspired by WinUI 3. No framework or build step.</p>
+    <p>纯 HTML、CSS、JavaScript；组件统一使用 <code>winui-prev</code>，可写在 div、button 等元素上，无需自定义标签。</p>
 
-    <h2>Buttons</h2>
-    <div class="controls">
-      <elements winui-prev="Button" winui-content="Standard button"></elements>
-      <elements winui-prev="AccentButton" winui-content="Accent button"></elements>
-      <elements winui-prev="ToggleButton" winui-content="Toggle button"></elements>
-      <elements winui-prev="HyperlinkButton" winui-content="Hyperlink button"></elements>
-      <elements winui-prev="Button" winui-content="Disabled" winui-disabled="true"></elements>
+    <h2>按钮与下拉</h2>
+    <div class="demo-row">
+      <div winui-prev="Button" winui-content="标准按钮"></div>
+      <div winui-prev="AccentButton" winui-content="强调按钮"></div>
+      <button winui-prev="ToggleButton" winui-content="切换按钮"></button>
+      <div winui-prev="HyperlinkButton" winui-content="超链接按钮"></div>
+      <div winui-prev="DropDownButton" winui-content="操作" winui-items='["新建","打开","保存"]'></div>
+      <div winui-prev="SplitButton" winui-content="运行" winui-items='["运行","以管理员身份运行","调试"]'></div>
+      <div winui-prev="ComboBox" winui-placeholder="选择水果" winui-items='["苹果","橙子","梨"]'></div>
     </div>
 
-    <h2>Dropdowns</h2>
-    <div class="controls">
-      <elements winui-prev="DropDownButton" winui-content="Actions" winui-items='["New","Open","Save as…"]'></elements>
-      <elements winui-prev="SplitButton" winui-content="Run" winui-items='["Run","Run as administrator","Debug"]'></elements>
-      <elements winui-prev="ComboBox" winui-placeholder="Choose a fruit" winui-items='["Apple","Apricot","Banana","Blueberry","Orange","Pear"]'></elements>
+    <h2>可折叠侧边栏</h2>
+    <div class="demo-card">
+      <div winui-prev="AppLayout" class="demo-layout">
+        <div winui-prev="Sidebar" id="demo-sidebar" class="demo-sidebar" winui-label="主导航">
+          <div winui-prev="SidebarItem" aria-current="page">主页</div>
+          <div winui-prev="SidebarItem">收藏</div>
+          <div winui-prev="SidebarItem">设置</div>
+        </div>
+        <div winui-prev="Content" class="demo-content">
+          <button winui-prev="SidebarToggle" winui-target="#demo-sidebar"></button>
+          <p>点击左上角的导航按钮，展开或收起侧边栏；切换按钮、图标和导航项都有过渡动画。</p>
+        </div>
+      </div>
     </div>
 
-    <div class="note"><strong>Visual simulation:</strong> these controls mimic WinUI 3 interaction and styling in the browser. Exact pixel matching depends on browser, OS, font availability, and display scaling.</div>
+    <h2>加载动画</h2>
+    <div class="demo-card loading-row">
+      <div winui-prev="LoadingRing" winui-indeterminate="true" winui-label="正在加载"></div>
+      <div style="width:240px"><div winui-prev="ProgressBar" winui-indeterminate="true" winui-label="正在加载"></div></div>
+      <div style="width:240px"><div winui-prev="ProgressBar" winui-value="64"></div></div>
+    </div>
   </main>
 </body>
 </html>

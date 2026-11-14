@@ -1,47 +1,61 @@
 # winui-web
 
-A dependency-free HTML, CSS, and JavaScript library for WinUI 3-inspired controls. It does not use XAML, C#, a framework, or a build step.
-
-> This project recreates the WinUI 3 visual language in the browser; it is not an official Microsoft implementation and cannot guarantee pixel-identical rendering across browsers, operating systems, fonts, or display scaling.
+A zero-dependency WinUI 3-inspired UI kit built with HTML, CSS, and JavaScript. No XAML, C#, React, Vue, TypeScript, or build step is required. This is a browser simulation, not an official Microsoft implementation; exact pixels vary by browser, OS, fonts, and display scaling.
 
 ## Quick start
 
-Include the stylesheet and script, then declare controls with the `elements` tag and `winui-prev` attribute:
+Include the CSS and JavaScript, and put `winui-prev` on an ordinary HTML element (`div`, `button`, etc.). No custom `<elements>` tag is required.
 
 ```html
 <link rel="stylesheet" href="winui.css">
 <script src="winui.js" defer></script>
 
-<elements winui-prev="Button" winui-content="Button"></elements>
-<elements winui-prev="AccentButton" winui-content="Accent button"></elements>
-<elements winui-prev="DropDownButton" winui-content="Actions"
-  winui-items='["New","Open","Save"]'></elements>
-<elements winui-prev="ComboBox" winui-placeholder="Choose a fruit"
-  winui-items='["Apple","Orange","Pear"]'></elements>
+<div winui-prev="Button" winui-content="Button"></div>
+<div winui-prev="AccentButton" winui-content="Accent"></div>
+<div winui-prev="DropDownButton" winui-content="Actions" winui-items='["New","Open","Save"]'></div>
+<div winui-prev="SidebarToggle"></div>
+<div winui-prev="LoadingRing" winui-indeterminate="true"></div>
 ```
-
-Open `index.html` to see the controls in a demo. No server or compilation is required.
 
 ## Controls
 
-- `Button` and `AccentButton`
-- `ToggleButton` (`winui-checked="true"` initially)
-- `HyperlinkButton`
-- `DropDownButton` (button that opens a menu)
-- `SplitButton` (primary action plus a menu arrow)
-- `ComboBox` (editable text input with suggestions)
+### Buttons and menus
 
-### Attributes
+`Button`, `AccentButton`, `ToggleButton`, `HyperlinkButton`, `DropDownButton`, `SplitButton`, and `ComboBox`.
 
-- `winui-content`: button label (or initial split-button action label)
-- `winui-items`: JSON array of menu/suggestion labels
-- `winui-placeholder`: ComboBox placeholder
-- `winui-disabled`: disable the control (`true`)
-- `winui-checked`: initial ToggleButton checked state (`true`)
-- `winui-theme`: `light` or `dark` (defaults to system preference)
+- `winui-content`: button text.
+- `winui-items`: JSON array of menu/ComboBox items (or direct child `<option>` labels).
+- `winui-placeholder`: ComboBox placeholder.
+- `winui-disabled="true"`: disable a control.
+- `winui-checked="true"`: initial ToggleButton state.
 
-Dropdown items can also be supplied as child `<option>` elements. Components are progressively enhanced, and dynamically-added `<elements>` tags are initialized automatically.
+### Layout
 
-## Scope
+```html
+<div winui-prev="AppLayout">
+  <div winui-prev="Sidebar" id="nav" winui-collapsed="false">
+    <div winui-prev="SidebarItem">Home</div>
+    <div winui-prev="SidebarItem">Settings</div>
+  </div>
+  <div winui-prev="Content">
+    <button winui-prev="SidebarToggle" winui-target="#nav"></button>
+    Main content
+  </div>
+</div>
+```
 
-Controls are visual/interaction simulations only: no return values or application data binding are provided. Native browser focus, keyboard, and accessibility behavior is used where practical.
+- `AppLayout`: responsive two-column shell.
+- `Sidebar`: animated navigation pane; `winui-collapsed="true"` starts collapsed.
+- `SidebarToggle`: animated hamburger control, toggles the nearest sidebar or `winui-target="#sidebar-id"`.
+- `SidebarItem`: keyboard-operable navigation item.
+- `Content`: main content area.
+- `StackPanel`: flex layout; `winui-orientation="horizontal"` or `vertical`.
+- `GridPanel`: CSS grid; `winui-columns="1fr 2fr"` sets columns.
+
+### Loading and progress
+
+- `<div winui-prev="LoadingRing" winui-indeterminate="true"></div>`
+- `<div winui-prev="ProgressBar" winui-indeterminate="true"></div>`
+- `<div winui-prev="ProgressBar" winui-value="64"></div>` (0–100)
+
+The library respects `prefers-reduced-motion`, supports light/dark system themes, and initializes controls added later to the DOM. Layout containers preserve their child markup. Controls are visual simulations; no application values or return values are exposed.
